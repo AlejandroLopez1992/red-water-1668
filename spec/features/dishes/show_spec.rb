@@ -73,9 +73,39 @@ RSpec.describe 'Dish show page' do
 
     it 'should display the name of the chaf who made this dish' do
       visit chef_dish_path(@chef, @dish_1)
-      save_and_open_page
+      
       within("#chef_name") do
         expect(page).to have_content(@chef.name)
+      end
+    end
+
+    it 'has a form to add an ingredient to the dish' do
+      visit chef_dish_path(@chef, @dish_1)
+
+      within("#add_ingredient") do
+        expect(page).to have_content("Ingredient")
+        expect(page).to have_button("Submit")
+      end
+    end
+
+    it 'when form is filled with existing ingredient ID and submit is clicked page is redirected to dish show page and new ingredient name appears' do
+      visit chef_dish_path(@chef, @dish_1)
+
+      within("#dish_ingredients") do
+        expect(page).to_not have_content(@ingredient_10.name)
+      end
+
+      within("#add_ingredient") do
+        fill_in("Ingredient", with: @ingredient_10.id)
+        click_button("Submit")
+
+        expect(current_path).to eq(chef_dish_path(@chef, @dish_1))
+      end
+      
+      visit chef_dish_path(@chef, @dish_1)
+
+      within("#dish_ingredients") do
+        expect(page).to have_content(@ingredient_10.name)
       end
     end
   end

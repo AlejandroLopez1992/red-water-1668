@@ -13,5 +13,14 @@
 <% end %>
 
 <%= content_tag :div, id: "chef_name" do %>
-  <p><%= @dish.chef_name%></p>
+  <p><%= @dish.chef_name %></p>
+<% end %>
+
+<%= content_tag :div, id: "add_ingredient" do %>
+  <p><%= form_with method: :post,  url: dish_ingredients_path, local: true do |form| %></p>
+    <%= form.hidden_field :dish_id, value: @dish.id %>
+    <%= form.label :ingredient_id, "Ingredient" %>
+    <%= form.text_field :ingredient_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
 <% end %>
