@@ -34,7 +34,7 @@ RSpec.describe 'Dish show page' do
 
   describe 'Page Display' do
     it 'should display dishes attributes' do
-      visit chef_dish(@chef, @dish_1)
+      visit chef_dish_path(@chef, @dish_1)
 
       expect(page).to have_content(@dish_1.name)
       expect(page).to have_content(@dish_1.description)
@@ -45,7 +45,7 @@ RSpec.describe 'Dish show page' do
     end
 
     it 'should show a list of the dishes ingredients' do
-      visit chef_dish(@chef, @dish_1)
+      visit chef_dish_path(@chef, @dish_1)
 
       within("#dish_ingredients") do
         expect(page).to have_content(@ingredient_1.name)
@@ -58,13 +58,13 @@ RSpec.describe 'Dish show page' do
     end
 
     it 'should display a total calorie count for the dish based on ingredient calories' do
-      visit chef_dish(@chef, @dish_1)
+      visit chef_dish_path(@chef, @dish_1)
 
       within("#dish_calories") do
         expect(page).to have_content(625)
       end
 
-      visit chef_dish(@chef, @dish_2)
+      visit chef_dish_path(@chef, @dish_2)
 
       within("#dish_calories") do
         expect(page).to have_content(250)
@@ -72,7 +72,7 @@ RSpec.describe 'Dish show page' do
     end
 
     it 'should display the name of the chaf who made this dish' do
-      visit chef_dish(@chef, @dish_1)
+      visit chef_dish_path(@chef, @dish_1)
 
       within("#chef_name") do
         expect(page).to have_content(@chef.name)

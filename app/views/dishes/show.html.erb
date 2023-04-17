@@ -1,0 +1,12 @@
+<h1><%= @dish.name %></h1>
+
+<p><%= @dish.description %></p>
+
+<%= content_tag :div, id: "dish_ingredients" do %>
+  <% @dish.ingredients.each do |ingredient| %>
+  <p><%= ingredient.name %></p>
+<% end %>
+
+<%= content_tag :div, id: "dish_calories" do %>
+  <p><%= @dish.sum_calories %></p>
+<% end %>
