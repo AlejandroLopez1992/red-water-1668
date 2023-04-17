@@ -73,7 +73,7 @@ RSpec.describe 'Dish show page' do
 
     it 'should display the name of the chaf who made this dish' do
       visit chef_dish_path(@chef, @dish_1)
-
+      save_and_open_page
       within("#chef_name") do
         expect(page).to have_content(@chef.name)
       end

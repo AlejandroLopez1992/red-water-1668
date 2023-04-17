@@ -5,8 +5,13 @@
 <%= content_tag :div, id: "dish_ingredients" do %>
   <% @dish.ingredients.each do |ingredient| %>
   <p><%= ingredient.name %></p>
+  <% end %>
 <% end %>
 
 <%= content_tag :div, id: "dish_calories" do %>
   <p><%= @dish.sum_calories %></p>
+<% end %>
+
+<%= content_tag :div, id: "chef_name" do %>
+  <p><%= @dish.chef_name%></p>
 <% end %>
